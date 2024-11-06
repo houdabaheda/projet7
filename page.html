@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <title>Restaurent</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Manrope:wght@200..800&display=swap"
+        rel="stylesheet">
+    <script src="recipes.js" defar></script>
+    <script src="scripts/data.js" defer></script>
+    <script src="scripts/tag.js" defer></script>
+    <script src="scripts/page.js" defer></script>
+
+</head>
+
+<body>
+
+    <div class="container">
+        <img src="image/image.jpg" class="background-image" alt="Background Image">
+
+        <header>
+            <div class="logo">
+                LES PETITS PLATS<span class="circle-symbol">◉</span>
+            </div>
+        </header>
+
+        <div class="content">
+            <h1>CHERCHEZ PARMI PLUS DE 1500 RECETTES</h1>
+            <h2>DU QUOTIDIEN, SIMPLES ET DÉLICIEUSES</h2>
+            <div class="search-bar">
+                <input type="text" placeholder="Rechercher une recette, un ingrédient, ..." />
+                <div class="button">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <main>
+
+        <div class="tag-container">
+
+            
+
+            <div class="tag">
+
+                <div class="dropdown" id="dropdown">
+                    <!-- Bouton pour sélectionner un ingrédient -->
+                    <div class="select" id="selectBox">
+                        ingrédient <i class=" fa-solid fa-chevron-down" id="arrow"></i>
+                    </div>
+
+                    <!-- Liste des ingrédients avec barre de recherche -->
+                    <div class="list" id="ingredientList">
+                        <div class="search-bar2">
+                            <input type="text" id="searchInput" oninput="filterIngredients()">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                        </div>
+                        <!-- Les options d'ingrédients seront ajoutées ici dynamiquement -->
+                    </div>
+                </div>
+
+                <div class="dropdown" id="dropdown">
+                    <!-- Bouton pour sélectionner un ingrédient -->
+                    <div class="select" id="selectBoxAPP">
+                        Appareils <i class=" fa-solid fa-chevron-down" id="arrowAPP"></i>
+                    </div>
+
+                    <!-- Liste des ingrédients avec barre de recherche -->
+                    <div class="list" id="ingredientListAPP">
+                        <div class="search-bar2">
+                            <input type="text" id="searchInputAPP" oninput="filterIngredientsAPP()">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                        </div>
+                        <!-- Les options d'ingrédients seront ajoutées ici dynamiquement -->
+                    </div>
+                </div>
+
+                <div class="dropdown" id="dropdown">
+                    <!-- Bouton pour sélectionner un ingrédient -->
+                    <div class="select" id="selectBoxUS">
+                        Ustensiles
+                        <i class=" fa-solid fa-chevron-down" id="arrowUS"></i>
+                    </div>
+
+                    <!-- Liste des ingrédients avec barre de recherche -->
+                    <div class="list" id="ingredientListUS">
+                        <div class="search-bar2">
+                            <input type="text" id="searchInputUS" oninput="filterIngredientsUS()">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                        </div>
+                        <!-- Les options d'ingrédients seront ajoutées ici dynamiquement -->
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="number">
+            </div>
+
+            
+        </div>
+
+        <!-- Liste pour afficher les ingrédients sélectionnés -->
+        <ul class="selected-items" id="selectedItems"></ul>
+
+
+
+        <div class="plats-section">
+
+        </div>
+        <div class="no-results-message">
+                
+        </div>
+
+    </main>
+
+    <footer>
+
+    </footer>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+
+</html>

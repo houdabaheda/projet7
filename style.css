@@ -1,0 +1,395 @@
+body,
+html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    font-family: Arial, sans-serif;
+}
+
+.container {
+    position: relative;
+    width: 100%;
+    height: 900px;
+
+}
+
+.background-image {
+    position: absolute;
+    width: 100%;
+    height: 900px;
+
+    object-fit: cover;
+    z-index: -1;
+    /* Place l'image en arrière-plan */
+}
+
+header {
+    padding-top: 51px;
+    padding-left: 69px;
+}
+
+.logo {
+    color: white;
+    font-size: 34px;
+    font-weight: bold;
+}
+
+.circle-symbol {
+    font-size: 34px;
+    margin-left: 5px;
+}
+
+.content {
+    position: relative;
+    text-align: center;
+    color: var(--Yellow, #FFD15B);
+    /* Couleur or pour le texte */
+    z-index: 1;
+    margin-top: 168px;
+    /* Ajuster la position verticale */
+}
+
+h1,
+h2 {
+    margin: 0;
+    font-weight: bold;
+    font-family: Anton;
+
+
+}
+
+h1 {
+
+    font-size: 44px;
+}
+
+h2 {
+    font-size: 42px;
+    margin-bottom: 29px;
+}
+
+.search-bar {
+    position: relative;
+    width: 954px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+
+}
+
+.search-bar input {
+    width: 954px;
+    height: 45px;
+    padding: 15px;
+    border-radius: 11px 11px 11px 11px;
+    font-size: 16px;
+}
+
+
+
+.button .fa-magnifying-glass {
+    color: white;
+    font-size: 20px;
+    position: absolute;
+    background-color: #000;
+    border: none;
+    padding: 15px;
+    border-radius: 10px 10px 10px 10px;
+    cursor: pointer;
+    right: 20px;
+    top: 16px
+}
+
+
+main {
+    background-color: #EDEDED;
+    padding-top: 100px;
+    padding-bottom: 200px;
+
+}
+
+.plats-section {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 48px;
+    margin-left: 102px;
+    margin-right: 102px;
+
+
+}
+
+article img {
+    width: 100%;
+    height: 253px;
+    object-fit: cover;
+    border-radius: 21px 21px 0px 0px;
+
+
+}
+
+article {
+    background-color: white;
+    border-radius: 21px;
+    box-shadow: 0px 4px 34px 30px rgba(0, 0, 0, 0.04);
+    position: relative;
+
+}
+
+.minute {
+    position: absolute;
+    right: 20px;
+    top: 10px;
+    border-radius: 14px;
+    background: var(--Yellow, #FFD15B);
+    padding: 5px 15px;
+    color: var(--Black, #1B1B1B);
+    text-align: center;
+    font-family: Manrope;
+    font-size: 22px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+article h1 {
+    color: #000;
+    font-family: Anton;
+    font-size: 28px;
+    font-style: normal;
+    font-weight: bold;
+    line-height: normal;
+}
+
+
+.recette {
+    margin-left: 25px;
+    margin-right: 25px;
+    margin-top: 32px;
+    margin-bottom: 61px;
+}
+
+.recette h2,
+.recette h3 {
+    color: var(--Grey, #7A7A7A);
+    font-family: Manrope;
+    font-size: 22px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    letter-spacing: 1.08px;
+    text-transform: uppercase;
+    margin-top: 30px;
+    margin-bottom: 15px;
+}
+
+.recette p {
+    color: var(--Black, #1B1B1B);
+    font-family: Manrope;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    margin: 0%;
+}
+
+.ingredients-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px
+}
+
+.ingredient-item {
+    display: flex;
+    flex-direction: column;
+}
+
+.name {
+    color: var(--Black, #1B1B1B);
+    font-family: Manrope;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    margin-bottom: 10px;
+}
+
+.details {
+    color: var(--Grey, #7A7A7A);
+    font-family: Manrope;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+
+
+.tag-container {
+    display: flex;
+
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.number {
+    margin-right: 104px;
+    color: var(--Black, #1B1B1B);
+    font-family: Anton;
+    font-size: 21px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+
+}
+
+
+
+.no-results-message{
+    font-size: 20px;
+    font-family: Anton;
+    margin: 120px;
+    
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.dropdown {
+    position: relative;
+    width: 300px;
+    margin-left: 104px;
+    margin-bottom: 21px;
+}
+
+/* Style pour le bouton de sélection */
+.dropdown .select {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 17px 16px;
+    font-size: 16px;
+    background-color: white;
+    cursor: pointer;
+    border-radius: 11px;
+    box-sizing: border-box;
+    transition: border 0.3s ease;
+
+}
+
+/* Style pour la flèche, qui change selon l'état */
+.dropdown .arrow {
+    font-size: 18px;
+}
+
+
+/* Style pour la liste des ingrédients */
+.dropdown .list {
+    position: absolute;
+    top: 44px;
+    width: 100%;
+    border: 1px solid white;
+    border-radius: 0px 0px 11px 11px;
+    background-color: white;
+    max-height: 150px;
+    overflow-y: auto;
+    display: none;
+    /* Masquer la liste au départ */
+    box-sizing: border-box;
+    z-index: 10;
+}
+
+/* Barre de recherche en haut de la liste */
+.search-bar2 {
+    position: relative;
+    padding: 10px;
+    box-sizing: border-box;
+    padding-bottom: 20px;
+}
+
+#searchInput,
+#searchInputAPP,
+#searchInputUS {
+    width: 95%;
+    height: 36px;
+    color: #7A7A7A;
+    border: 3px solid #7A7A7A;
+
+
+}
+
+
+.search-bar2 .fa-magnifying-glass {
+    color: #7A7A7A;
+
+    position: absolute;
+    right: 25px;
+    top: 24px
+}
+
+
+.dropdown .list .item {
+    padding: 13px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    /* Ajout d'une transition pour le survol */
+    color: var(--Black, #1B1B1B);
+    font-family: Manrope;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+/* Effet de survol */
+.dropdown .list .item:hover {
+    background: #FFD15B;
+}
+
+.selected-items {
+    margin-left: 104px;
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    margin-top: 10px;
+    padding: 0;
+    list-style-type: none;
+    width: 1654px;
+}
+
+
+
+.selected-item-container {
+    display: flex;
+    flex-direction: row;
+    background-color: #FFD15B;
+    white-space: nowrap;
+    align-items: center;
+    padding: 18px;
+    height: 19px;
+    margin-bottom: 5px;
+    border-radius: 10px;
+    gap: 60px;
+
+
+}
+
+
+
+.tag {
+    display: flex;
+    flex-direction: row;
+}
