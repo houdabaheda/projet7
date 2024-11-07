@@ -60,13 +60,13 @@ document.addEventListener('click', (event) => {
 function applyFilters(recipes) {
     return recipes.filter(recipe =>
         selectedINGRS.every(ingredient =>
-            recipe.ingredients.some(item => item.ingredient.includes(ingredient))
+            recipe.ingredients.some(item => item.ingredient.toLowerCase() === ingredient.toLowerCase()) // correspondance exacte
         ) &&
         selectedAPPS.every(appliance =>
-            recipe.appliance.includes(appliance)
+            recipe.appliance === appliance // correspondance exacte pour un seul appareil
         ) &&
         selectedUstensils.every(ustensil =>
-            recipe.ustensils.includes(ustensil)
+            recipe.ustensils.includes(ustensil) // correspondance exacte pour chaque ustensile
         )
     );
 }
@@ -136,7 +136,7 @@ function populateIngredientList(allIngredients, recipes) {
             document.querySelectorAll('.liste2').forEach(element => {
                 element.innerHTML = '';
             });
-            Tag = extractUniqueUstensils(filteredRecipes);
+            Tag = extractUniqueUstensils(filteredRecipes).filter(ustensil => !selectedUstensils.includes(ustensil));
             populateIngredientListUS(Tag, filteredRecipes);
 
 
@@ -202,7 +202,7 @@ function selectIngredient(ingredient, recipes) {
                 document.querySelectorAll('.liste2').forEach(element => {
                     element.innerHTML = '';
                 });
-                const Tag = extractUniqueUstensils(filteredRecipes);
+                const Tag = extractUniqueUstensils(filteredRecipes).filter(ustensil => !selectedUstensils.includes(ustensil));
                 populateIngredientListUS(Tag, filteredRecipes);
             } else {
                 if (filteredRecipe.length > 0) {
@@ -220,7 +220,7 @@ function selectIngredient(ingredient, recipes) {
                     document.querySelectorAll('.liste2').forEach(element => {
                         element.innerHTML = '';
                     });
-                    Tag = extractUniqueUstensils(filteredRecipe).filter(ustensil => !selectedUstensils.includes(ustensil));
+                    Tag = extractUniqueUstensils(filteredRecipe);
 
                     populateIngredientListUS(Tag, filteredRecipe);
 
@@ -256,7 +256,7 @@ function selectIngredient(ingredient, recipes) {
                     document.querySelectorAll('.liste2').forEach(element => {
                         element.innerHTML = '';
                     });
-                    Tag = extractUniqueUstensils(plats).filter(ustensil => !selectedUstensils.includes(ustensil));
+                    Tag = extractUniqueUstensils(plats);
 
                     populateIngredientListUS(Tag, plats);
 
@@ -343,7 +343,7 @@ function populateIngredientListAPP(allAppliances, recipes) {
             document.querySelectorAll('.liste2').forEach(element => {
                 element.innerHTML = '';
             });
-            Tag = extractUniqueUstensils(filteredRecipes);
+            Tag = extractUniqueUstensils(filteredRecipes).filter(ustensil => !selectedUstensils.includes(ustensil));
 
 
             populateIngredientListUS(Tag, filteredRecipes);
@@ -418,7 +418,7 @@ function selectIngredientAPP(Appliance, recipes) {
                 document.querySelectorAll('.liste2').forEach(element => {
                     element.innerHTML = '';
                 });
-                const Tag = extractUniqueUstensils(filteredRecipes);
+                const Tag = extractUniqueUstensils(filteredRecipes).filter(ustensil => !selectedUstensils.includes(ustensil));
 
                 populateIngredientListUS(Tag, filteredRecipes);
 
@@ -590,7 +590,7 @@ function populateIngredientListUS(allUstensils, recipes) {
             document.querySelectorAll('.liste1').forEach(element => {
                 element.innerHTML = '';
             });
-            TagApp = extractUniqueAppliances(filteredRecipes);
+            TagApp = extractUniqueAppliances(filteredRecipes).filter(appliance => !selectedAPPS.includes(appliance));
             console.log(TagApp);
 
 
@@ -601,7 +601,7 @@ function populateIngredientListUS(allUstensils, recipes) {
             document.querySelectorAll('.liste').forEach(element => {
                 element.innerHTML = '';
             });
-            TagINGR = extractUniqueIngredients(filteredRecipes);
+            TagINGR = extractUniqueIngredients(filteredRecipes).filter(ingredient => !selectedINGRS.includes(ingredient));
             populateIngredientList(TagINGR, filteredRecipes);
 
 
@@ -671,7 +671,7 @@ function selectIngredientUS(Ustensil, recipes) {
                 document.querySelectorAll('.liste1').forEach(element => {
                     element.innerHTML = '';
                 });
-                TagApp = extractUniqueAppliances(filteredRecipes);
+                TagApp = extractUniqueAppliances(filteredRecipes).filter(appliance => !selectedAPPS.includes(appliance));
 
                 populateIngredientListAPP(TagApp, filteredRecipes);
 
@@ -680,7 +680,7 @@ function selectIngredientUS(Ustensil, recipes) {
                 document.querySelectorAll('.liste').forEach(element => {
                     element.innerHTML = '';
                 });
-                TagINGR = extractUniqueIngredients(filteredRecipes);
+                TagINGR = extractUniqueIngredients(filteredRecipes).filter(ingredient => !selectedINGRS.includes(ingredient));
                 populateIngredientList(TagINGR, filteredRecipes);
 
             } else {
