@@ -168,39 +168,118 @@ function selectIngredient(ingredient, recipes) {
             div.remove();
             const selectedText = selectedItem.textContent;
             selectedINGRS = selectedINGRS.filter(ingredient => ingredient !== selectedText);
-            const filteredRecipes = applyFilters(recipes);
+
+            if (selectedINGRS.length > 0 || selectedAPPS.length > 0 || selectedUstensils.length > 0) {
+
+                const filteredRecipes = applyFilters(recipes);
 
 
 
-            document.querySelector('.plats-section').innerHTML = '';
-            genererPlats(filteredRecipes);
-            document.querySelector('.number').innerHTML = '';
-            number(filteredRecipes);
+                document.querySelector('.plats-section').innerHTML = '';
+                genererPlats(filteredRecipes);
+                document.querySelector('.number').innerHTML = '';
+                number(filteredRecipes);
 
-            console.log(filteredRecipes)
+                console.log(filteredRecipes)
 
-            document.querySelectorAll('.liste').forEach(element => {
-                element.innerHTML = '';
-            });
-            TagINGR = extractUniqueIngredients(filteredRecipes).filter(ingredient => !selectedINGRS.includes(ingredient));
-            populateIngredientList(TagINGR, recipes);
-
-
-            document.querySelectorAll('.liste1').forEach(element => {
-                element.innerHTML = '';
-            });
-            TagApp = extractUniqueAppliances(filteredRecipes).filter(appliance => !selectedAPPS.includes(appliance));
-            populateIngredientListAPP(TagApp, filteredRecipes);
-            console.log(TagApp)
+                document.querySelectorAll('.liste').forEach(element => {
+                    element.innerHTML = '';
+                });
+                TagINGR = extractUniqueIngredients(filteredRecipes).filter(ingredient => !selectedINGRS.includes(ingredient));
+                populateIngredientList(TagINGR, recipes);
 
 
+                document.querySelectorAll('.liste1').forEach(element => {
+                    element.innerHTML = '';
+                });
+                TagApp = extractUniqueAppliances(filteredRecipes).filter(appliance => !selectedAPPS.includes(appliance));
+                populateIngredientListAPP(TagApp, filteredRecipes);
+                console.log(TagApp)
 
 
-            document.querySelectorAll('.liste2').forEach(element => {
-                element.innerHTML = '';
-            });
-            const Tag = extractUniqueUstensils(filteredRecipes);
-            populateIngredientListUS(Tag, filteredRecipes);
+
+
+                document.querySelectorAll('.liste2').forEach(element => {
+                    element.innerHTML = '';
+                });
+                const Tag = extractUniqueUstensils(filteredRecipes);
+                populateIngredientListUS(Tag, filteredRecipes);
+            } else {
+                if (filteredRecipe.length > 0) {
+                    document.querySelector('.plats-section').innerHTML = '';
+                    genererPlats(filteredRecipe);
+
+
+                    document.querySelector('.number').innerHTML = '';
+                    number(filteredRecipe);
+
+
+
+
+
+                    document.querySelectorAll('.liste2').forEach(element => {
+                        element.innerHTML = '';
+                    });
+                    Tag = extractUniqueUstensils(filteredRecipe).filter(ustensil => !selectedUstensils.includes(ustensil));
+
+                    populateIngredientListUS(Tag, filteredRecipe);
+
+
+                    document.querySelectorAll('.liste1').forEach(element => {
+                        element.innerHTML = '';
+                    });
+                    TagApp = extractUniqueAppliances(filteredRecipe);
+
+                    populateIngredientListAPP(TagApp, filteredRecipe);
+
+
+
+                    document.querySelectorAll('.liste').forEach(element => {
+                        element.innerHTML = '';
+                    });
+                    TagINGR = extractUniqueIngredients(filteredRecipe);
+                    populateIngredientList(TagINGR, filteredRecipe);
+
+                } else {
+
+                    document.querySelector('.plats-section').innerHTML = '';
+                    genererPlats(plats);
+
+
+                    document.querySelector('.number').innerHTML = '';
+                    number(plats);
+
+
+
+
+
+                    document.querySelectorAll('.liste2').forEach(element => {
+                        element.innerHTML = '';
+                    });
+                    Tag = extractUniqueUstensils(plats).filter(ustensil => !selectedUstensils.includes(ustensil));
+
+                    populateIngredientListUS(Tag, plats);
+
+
+                    document.querySelectorAll('.liste1').forEach(element => {
+                        element.innerHTML = '';
+                    });
+                    TagApp = extractUniqueAppliances(plats);
+
+                    populateIngredientListAPP(TagApp, plats);
+
+
+
+                    document.querySelectorAll('.liste').forEach(element => {
+                        element.innerHTML = '';
+                    });
+                    TagINGR = extractUniqueIngredients(plats);
+                    populateIngredientList(TagINGR, plats);
+
+
+                }
+
+            }
 
 
         });
@@ -309,43 +388,124 @@ function selectIngredientAPP(Appliance, recipes) {
             div.remove();
             const selectedText = selectedItem.textContent;
             selectedAPPS = selectedAPPS.filter(appliance => appliance !== selectedText);
-            const filteredRecipes = applyFilters(recipes);
+
+
+            if (selectedINGRS.length > 0 || selectedAPPS.length > 0 || selectedUstensils.length > 0) {
+                const filteredRecipes = applyFilters(recipes);
 
 
 
-            console.log(filteredRecipes)
-
-
-
-
-            document.querySelector('.plats-section').innerHTML = '';
-            genererPlats(filteredRecipes);
-            document.querySelector('.number').innerHTML = '';
-            number(filteredRecipes);
-
-            document.querySelectorAll('.liste1').forEach(element => {
-                element.innerHTML = '';
-            });
-            TagApp = extractUniqueAppliances(filteredRecipes).filter(appliance => !selectedAPPS.includes(appliance));
-
-            populateIngredientListAPP(TagApp, recipes);
+                console.log(filteredRecipes)
 
 
 
 
-            document.querySelectorAll('.liste2').forEach(element => {
-                element.innerHTML = '';
-            });
-            const Tag = extractUniqueUstensils(filteredRecipes);
+                document.querySelector('.plats-section').innerHTML = '';
+                genererPlats(filteredRecipes);
+                document.querySelector('.number').innerHTML = '';
+                number(filteredRecipes);
 
-            populateIngredientListUS(Tag, filteredRecipes);
+                document.querySelectorAll('.liste1').forEach(element => {
+                    element.innerHTML = '';
+                });
+                TagApp = extractUniqueAppliances(filteredRecipes).filter(appliance => !selectedAPPS.includes(appliance));
+
+                populateIngredientListAPP(TagApp, recipes);
 
 
-            document.querySelectorAll('.liste').forEach(element => {
-                element.innerHTML = '';
-            });
-            TagINGR = extractUniqueIngredients(filteredRecipes).filter(ingredient => !selectedINGRS.includes(ingredient));
-            populateIngredientList(TagINGR, filteredRecipes);
+
+
+                document.querySelectorAll('.liste2').forEach(element => {
+                    element.innerHTML = '';
+                });
+                const Tag = extractUniqueUstensils(filteredRecipes);
+
+                populateIngredientListUS(Tag, filteredRecipes);
+
+
+                document.querySelectorAll('.liste').forEach(element => {
+                    element.innerHTML = '';
+                });
+                TagINGR = extractUniqueIngredients(filteredRecipes).filter(ingredient => !selectedINGRS.includes(ingredient));
+                populateIngredientList(TagINGR, filteredRecipes);
+
+            } else {
+                if (filteredRecipe.length > 0) {
+                    document.querySelector('.plats-section').innerHTML = '';
+                    genererPlats(filteredRecipe);
+
+
+                    document.querySelector('.number').innerHTML = '';
+                    number(filteredRecipe);
+
+
+
+
+
+                    document.querySelectorAll('.liste2').forEach(element => {
+                        element.innerHTML = '';
+                    });
+                    Tag = extractUniqueUstensils(filteredRecipe).filter(ustensil => !selectedUstensils.includes(ustensil));
+
+                    populateIngredientListUS(Tag, filteredRecipe);
+
+
+                    document.querySelectorAll('.liste1').forEach(element => {
+                        element.innerHTML = '';
+                    });
+                    TagApp = extractUniqueAppliances(filteredRecipe);
+
+                    populateIngredientListAPP(TagApp, filteredRecipe);
+
+
+
+                    document.querySelectorAll('.liste').forEach(element => {
+                        element.innerHTML = '';
+                    });
+                    TagINGR = extractUniqueIngredients(filteredRecipe);
+                    populateIngredientList(TagINGR, filteredRecipe);
+
+                } else {
+
+                    document.querySelector('.plats-section').innerHTML = '';
+                    genererPlats(plats);
+
+
+                    document.querySelector('.number').innerHTML = '';
+                    number(plats);
+
+
+
+
+
+                    document.querySelectorAll('.liste2').forEach(element => {
+                        element.innerHTML = '';
+                    });
+                    Tag = extractUniqueUstensils(plats).filter(ustensil => !selectedUstensils.includes(ustensil));
+
+                    populateIngredientListUS(Tag, plats);
+
+
+                    document.querySelectorAll('.liste1').forEach(element => {
+                        element.innerHTML = '';
+                    });
+                    TagApp = extractUniqueAppliances(plats);
+
+                    populateIngredientListAPP(TagApp, plats);
+
+
+
+                    document.querySelectorAll('.liste').forEach(element => {
+                        element.innerHTML = '';
+                    });
+                    TagINGR = extractUniqueIngredients(plats);
+                    populateIngredientList(TagINGR, plats);
+
+
+                }
+
+            }
+
 
         });
     }
@@ -478,54 +638,127 @@ function selectIngredientUS(Ustensil, recipes) {
             // Supprime l'ustensile du tableau `selectedUstensils`
             selectedUstensils = selectedUstensils.filter(ustensil => ustensil !== selectedText);
             console.log("Ustensiles après suppression:", selectedUstensils);
-            const filteredRecipes = applyFilters(recipes);
+
+            if (selectedINGRS.length > 0 || selectedAPPS.length > 0 || selectedUstensils.length > 0) {
+                const filteredRecipes = applyFilters(recipes);
+
+                console.log(selectedText)
+                console.log(filteredRecipes.length)
+                console.log(recipes.length)
+                console.log(filteredRecipes);
+
+
+
+                document.querySelector('.plats-section').innerHTML = '';
+                genererPlats(filteredRecipes);
+
+
+                document.querySelector('.number').innerHTML = '';
+                number(filteredRecipes);
 
 
 
 
 
+                document.querySelectorAll('.liste2').forEach(element => {
+                    element.innerHTML = '';
+                });
+                Tag = extractUniqueUstensils(filteredRecipes).filter(ustensil => !selectedUstensils.includes(ustensil));
 
-            console.log(selectedText)
-            console.log(filteredRecipes.length)
-            console.log(recipes.length)
-
-
-
-            console.log(filteredRecipes);
-
-            document.querySelector('.plats-section').innerHTML = '';
-            genererPlats(filteredRecipes);
+                populateIngredientListUS(Tag, recipes);
 
 
-            document.querySelector('.number').innerHTML = '';
-            number(filteredRecipes);
+                document.querySelectorAll('.liste1').forEach(element => {
+                    element.innerHTML = '';
+                });
+                TagApp = extractUniqueAppliances(filteredRecipes);
 
+                populateIngredientListAPP(TagApp, filteredRecipes);
 
 
 
+                document.querySelectorAll('.liste').forEach(element => {
+                    element.innerHTML = '';
+                });
+                TagINGR = extractUniqueIngredients(filteredRecipes);
+                populateIngredientList(TagINGR, filteredRecipes);
 
-            document.querySelectorAll('.liste2').forEach(element => {
-                element.innerHTML = '';
-            });
-            Tag = extractUniqueUstensils(filteredRecipes).filter(ustensil => !selectedUstensils.includes(ustensil));
-
-            populateIngredientListUS(Tag, recipes);
-
-
-            document.querySelectorAll('.liste1').forEach(element => {
-                element.innerHTML = '';
-            });
-            TagApp = extractUniqueAppliances(filteredRecipes);
-
-            populateIngredientListAPP(TagApp, filteredRecipes);
+            } else {
+                if (filteredRecipe.length > 0) {
+                    document.querySelector('.plats-section').innerHTML = '';
+                    genererPlats(filteredRecipe);
 
 
+                    document.querySelector('.number').innerHTML = '';
+                    number(filteredRecipe);
 
-            document.querySelectorAll('.liste').forEach(element => {
-                element.innerHTML = '';
-            });
-            TagINGR = extractUniqueIngredients(filteredRecipes);
-            populateIngredientList(TagINGR, filteredRecipes);
+
+
+
+
+                    document.querySelectorAll('.liste2').forEach(element => {
+                        element.innerHTML = '';
+                    });
+                    Tag = extractUniqueUstensils(filteredRecipe).filter(ustensil => !selectedUstensils.includes(ustensil));
+
+                    populateIngredientListUS(Tag, filteredRecipe);
+
+
+                    document.querySelectorAll('.liste1').forEach(element => {
+                        element.innerHTML = '';
+                    });
+                    TagApp = extractUniqueAppliances(filteredRecipe);
+
+                    populateIngredientListAPP(TagApp, filteredRecipe);
+
+
+
+                    document.querySelectorAll('.liste').forEach(element => {
+                        element.innerHTML = '';
+                    });
+                    TagINGR = extractUniqueIngredients(filteredRecipe);
+                    populateIngredientList(TagINGR, filteredRecipe);
+
+                } else {
+
+                    document.querySelector('.plats-section').innerHTML = '';
+                    genererPlats(plats);
+
+
+                    document.querySelector('.number').innerHTML = '';
+                    number(plats);
+
+
+
+
+
+                    document.querySelectorAll('.liste2').forEach(element => {
+                        element.innerHTML = '';
+                    });
+                    Tag = extractUniqueUstensils(plats).filter(ustensil => !selectedUstensils.includes(ustensil));
+
+                    populateIngredientListUS(Tag, plats);
+
+
+                    document.querySelectorAll('.liste1').forEach(element => {
+                        element.innerHTML = '';
+                    });
+                    TagApp = extractUniqueAppliances(plats);
+
+                    populateIngredientListAPP(TagApp, plats);
+
+
+
+                    document.querySelectorAll('.liste').forEach(element => {
+                        element.innerHTML = '';
+                    });
+                    TagINGR = extractUniqueIngredients(plats);
+                    populateIngredientList(TagINGR, plats);
+
+
+                }
+            }
+
 
 
 

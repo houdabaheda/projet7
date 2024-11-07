@@ -225,6 +225,15 @@ article h1 {
 
 
 
+
+
+
+
+
+
+
+
+
 .tag-container {
     display: flex;
 
@@ -265,7 +274,10 @@ article h1 {
 
 
 
-
+.tag {
+    display: flex;
+    flex-direction: row;
+}
 
 
 .dropdown {
@@ -341,6 +353,19 @@ article h1 {
 }
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
 .dropdown .list .item {
     padding: 13px;
     cursor: pointer;
@@ -389,7 +414,3 @@ article h1 {
 
 
 
-.tag {
-    display: flex;
-    flex-direction: row;
-}
