@@ -84,19 +84,16 @@ document.querySelector('.search-bar input').addEventListener('input', (e) => {
 
     if (searchQuery.length >= 3) {
         // Filtrer les recettes correspondant à la recherche
-        for (let plat of plats) {
-            // Vérifier si le nom, la description ou l'un des ingrédients correspond au `searchQuery`
-            if (
+        filteredRecipe = plats.filter(plat => {
+            return (
                 plat.name.toLowerCase().includes(searchQuery) ||
                 plat.description.toLowerCase().includes(searchQuery) ||
                 plat.ingredients.some(ingredient =>
                     ingredient.ingredient.toLowerCase().includes(searchQuery)
                 )
-            ) {
-                filteredRecipe.push(plat); // Ajouter le plat au tableau `filteredRecipe`
-            }
-        }
-        
+            );
+        });
+        console.log(filteredRecipe)
 
         // Effacer les plats affichés actuellement
         document.querySelector('.plats-section').innerHTML = '';
@@ -119,22 +116,21 @@ document.querySelector('.search-bar input').addEventListener('input', (e) => {
             const allAppliancesTag = extractUniqueAppliances(filteredRecipe);
             console.log(allAppliancesTag)
             const allUstensilsTag = extractUniqueUstensils(filteredRecipe);
+            console.log(allUstensilsTag)
 
-            let elementsListe1 = document.querySelectorAll('.liste1');
-            for (let element of elementsListe1) {
+            // Effacer tous les éléments avec la classe `.liste1`
+            document.querySelectorAll('.liste1').forEach(element => {
                 element.innerHTML = '';
-            }
-            
-            let elementsListe = document.querySelectorAll('.liste');
-            for (let element of elementsListe) {
+            });
+
+            // Faire la même chose pour `.liste` et `.liste2`
+            document.querySelectorAll('.liste').forEach(element => {
                 element.innerHTML = '';
-            }
-            
-            let elementsListe2 = document.querySelectorAll('.liste2');
-            for (let element of elementsListe2) {
+            });
+
+            document.querySelectorAll('.liste2').forEach(element => {
                 element.innerHTML = '';
-            }
-            
+            });
 
 
 
@@ -186,21 +182,19 @@ document.querySelector('.search-bar input').addEventListener('input', (e) => {
         number(plats);
 
 
-        let elementsListe1 = document.querySelectorAll('.liste1');
-        for (let element of elementsListe1) {
+        // Effacer tous les éléments avec la classe `.liste1`
+        document.querySelectorAll('.liste1').forEach(element => {
             element.innerHTML = '';
-        }
-        
-        let elementsListe = document.querySelectorAll('.liste');
-        for (let element of elementsListe) {
+        });
+
+        // Faire la même chose pour `.liste` et `.liste2`
+        document.querySelectorAll('.liste').forEach(element => {
             element.innerHTML = '';
-        }
-        
-        let elementsListe2 = document.querySelectorAll('.liste2');
-        for (let element of elementsListe2) {
+        });
+
+        document.querySelectorAll('.liste2').forEach(element => {
             element.innerHTML = '';
-        }
-        
+        });
 
 
 
