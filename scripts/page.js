@@ -119,7 +119,6 @@ document.querySelector('.search-bar input').addEventListener('input', (e) => {
             const allAppliancesTag = extractUniqueAppliances(filteredRecipe);
             console.log(allAppliancesTag)
             const allUstensilsTag = extractUniqueUstensils(filteredRecipe);
-            console.log(allUstensilsTag)
 
             // Effacer tous les éléments avec la classe `.liste1`
             document.querySelectorAll('.liste1').forEach(element => {
