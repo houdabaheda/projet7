@@ -120,19 +120,21 @@ document.querySelector('.search-bar input').addEventListener('input', (e) => {
             console.log(allAppliancesTag)
             const allUstensilsTag = extractUniqueUstensils(filteredRecipe);
 
-            // Effacer tous les éléments avec la classe `.liste1`
-            document.querySelectorAll('.liste1').forEach(element => {
+            let elementsListe1 = document.querySelectorAll('.liste1');
+            for (let element of elementsListe1) {
                 element.innerHTML = '';
-            });
-
-            // Faire la même chose pour `.liste` et `.liste2`
-            document.querySelectorAll('.liste').forEach(element => {
+            }
+            
+            let elementsListe = document.querySelectorAll('.liste');
+            for (let element of elementsListe) {
                 element.innerHTML = '';
-            });
-
-            document.querySelectorAll('.liste2').forEach(element => {
+            }
+            
+            let elementsListe2 = document.querySelectorAll('.liste2');
+            for (let element of elementsListe2) {
                 element.innerHTML = '';
-            });
+            }
+            
 
 
 
@@ -184,19 +186,21 @@ document.querySelector('.search-bar input').addEventListener('input', (e) => {
         number(plats);
 
 
-        // Effacer tous les éléments avec la classe `.liste1`
-        document.querySelectorAll('.liste1').forEach(element => {
+        let elementsListe1 = document.querySelectorAll('.liste1');
+        for (let element of elementsListe1) {
             element.innerHTML = '';
-        });
-
-        // Faire la même chose pour `.liste` et `.liste2`
-        document.querySelectorAll('.liste').forEach(element => {
+        }
+        
+        let elementsListe = document.querySelectorAll('.liste');
+        for (let element of elementsListe) {
             element.innerHTML = '';
-        });
-
-        document.querySelectorAll('.liste2').forEach(element => {
+        }
+        
+        let elementsListe2 = document.querySelectorAll('.liste2');
+        for (let element of elementsListe2) {
             element.innerHTML = '';
-        });
+        }
+        
 
 
 
