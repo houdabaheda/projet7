@@ -73,27 +73,33 @@ populateIngredientListUS(allUstensils, plats);
 number(plats)
 genererPlats(plats)
 
-let filteredRecipe = []; 
 
 
 
 
+let filteredRecipe = [];
 
 document.querySelector('.search-bar input').addEventListener('input', (e) => {
-    const searchQuery = e.target.value.toLowerCase();  // Convertir l'entrée en minuscule pour une recherche insensible à la casse.
-
+    const searchQuery = e.target.value.toLowerCase(); 
+    filteredRecipe = [] 
     if (searchQuery.length >= 3) {
         // Filtrer les recettes correspondant à la recherche
-        filteredRecipe = plats.filter(plat => {
-            return (
+        for (let i = 0; i < plats.length; i++) {
+            const plat = plats[i];
+
+            // Vérification des conditions de recherche pour le nom, la description et les ingrédients
+            const ingredientMatch = plat.ingredients.some(ingredient =>
+                ingredient.ingredient.toLowerCase().includes(searchQuery)
+            );
+
+            if (
                 plat.name.toLowerCase().includes(searchQuery) ||
                 plat.description.toLowerCase().includes(searchQuery) ||
-                plat.ingredients.some(ingredient =>
-                    ingredient.ingredient.toLowerCase().includes(searchQuery)
-                )
-            );
-        });
-        console.log(filteredRecipe)
+                ingredientMatch
+            ) {
+                filteredRecipe.push(plat); // Ajouter le plat à filteredRecipe s'il correspond
+            }
+        }
 
         // Effacer les plats affichés actuellement
         document.querySelector('.plats-section').innerHTML = '';
@@ -118,19 +124,20 @@ document.querySelector('.search-bar input').addEventListener('input', (e) => {
             const allUstensilsTag = extractUniqueUstensils(filteredRecipe);
             console.log(allUstensilsTag)
 
-            // Effacer tous les éléments avec la classe `.liste1`
-            document.querySelectorAll('.liste1').forEach(element => {
+            let elementsListe1 = document.querySelectorAll('.liste1');
+            for (let element of elementsListe1) {
                 element.innerHTML = '';
-            });
+            }
 
-            // Faire la même chose pour `.liste` et `.liste2`
-            document.querySelectorAll('.liste').forEach(element => {
+            let elementsListe = document.querySelectorAll('.liste');
+            for (let element of elementsListe) {
                 element.innerHTML = '';
-            });
+            }
 
-            document.querySelectorAll('.liste2').forEach(element => {
+            let elementsListe2 = document.querySelectorAll('.liste2');
+            for (let element of elementsListe2) {
                 element.innerHTML = '';
-            });
+            }
 
 
 
@@ -144,12 +151,12 @@ document.querySelector('.search-bar input').addEventListener('input', (e) => {
 
         } else {
             const noResultsMessage = document.querySelector('.no-results-message');
-           
+
             noResultsMessage.textContent = `Aucune recette ne contient « ${searchQuery} ». Vous pouvez chercher « tarte aux pommes », « poisson », etc.`;
             noResultsMessage.style.display = 'block';
             document.querySelector('.number').innerHTML = '';
             number(filteredRecipe);
-            
+
 
 
         }
@@ -172,7 +179,10 @@ document.querySelector('.search-bar input').addEventListener('input', (e) => {
 
 
     } else if (searchQuery.length === 0) {
-        filteredRecipe=[]
+        filteredRecipe = []
+        selectedINGRS = []
+        selectedAPPS = []
+        selectedUstensils = []
         // Si la barre de recherche est vide, afficher la liste complète des plats
         document.querySelector('.plats-section').innerHTML = '';
         genererPlats(plats);
@@ -182,19 +192,20 @@ document.querySelector('.search-bar input').addEventListener('input', (e) => {
         number(plats);
 
 
-        // Effacer tous les éléments avec la classe `.liste1`
-        document.querySelectorAll('.liste1').forEach(element => {
+        let elementsListe1 = document.querySelectorAll('.liste1');
+        for (let element of elementsListe1) {
             element.innerHTML = '';
-        });
+        }
 
-        // Faire la même chose pour `.liste` et `.liste2`
-        document.querySelectorAll('.liste').forEach(element => {
+        let elementsListe = document.querySelectorAll('.liste');
+        for (let element of elementsListe) {
             element.innerHTML = '';
-        });
+        }
 
-        document.querySelectorAll('.liste2').forEach(element => {
+        let elementsListe2 = document.querySelectorAll('.liste2');
+        for (let element of elementsListe2) {
             element.innerHTML = '';
-        });
+        }
 
 
 
