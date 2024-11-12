@@ -63,17 +63,6 @@ function genererPlats(plats) {
         recetteElement.appendChild(ingredientsContainer);
         platsElement.appendChild(recetteElement);
 
-
-
-
-
-
-
-
-
-
-
-
     }
 }
 
@@ -84,11 +73,10 @@ populateIngredientListUS(allUstensils, plats);
 number(plats)
 genererPlats(plats)
 
-let filteredRecipe = []; // Déclaration globale
+let filteredRecipe = []; 
 
 
 
-// Créer ou sélectionner l'élément pour afficher le message d'absence de résultats
 
 
 document.querySelector('.search-bar input').addEventListener('input', (e) => {
@@ -158,6 +146,8 @@ document.querySelector('.search-bar input').addEventListener('input', (e) => {
            
             noResultsMessage.textContent = `Aucune recette ne contient « ${searchQuery} ». Vous pouvez chercher « tarte aux pommes », « poisson », etc.`;
             noResultsMessage.style.display = 'block';
+            document.querySelector('.number').innerHTML = '';
+            number(filteredRecipe);
             
 
 
@@ -210,16 +200,6 @@ document.querySelector('.search-bar input').addEventListener('input', (e) => {
         populateIngredientList(allIngredients, plats);
         populateIngredientListAPP(allAppliances, plats);
         populateIngredientListUS(allUstensils, plats);
-
-
-
-
-
-
-
-
-
-
 
     }
 });
