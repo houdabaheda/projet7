@@ -172,10 +172,15 @@ document.querySelector('.search-bar input').addEventListener('input', (e) => {
 
     } else if (searchQuery.length === 0) {
         filteredRecipe=[]
+        selectedINGRS = []
+        selectedAPPS = []
+        selectedUstensils = []
+
         // Si la barre de recherche est vide, afficher la liste complète des plats
         document.querySelector('.plats-section').innerHTML = '';
         genererPlats(plats);
         console.log(plats.length)
+
 
         document.querySelector('.number').innerHTML = '';
         number(plats);
