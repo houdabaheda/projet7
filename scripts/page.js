@@ -84,28 +84,69 @@ document.querySelector('.search-bar input').addEventListener('input', (e) => {
     filteredRecipe = [] 
     if (searchQuery.length >= 3) {
         // Filtrer les recettes correspondant à la recherche
+        function areCharactersEqualIgnoreCase(char1, char2) {
+            const diff = 'a'.charCodeAt(0) - 'A'.charCodeAt(0);
+            if (char1 >= 'A' && char1 <= 'Z') {
+                char1 = String.fromCharCode(char1.charCodeAt(0) + diff);
+            }
+            if (char2 >= 'A' && char2 <= 'Z') {
+                char2 = String.fromCharCode(char2.charCodeAt(0) + diff);
+            }
+            return char1 === char2;
+        }
+        
+        function areStringsEqualIgnoreCase(str1, str2, start) {
+            for (let i = 0; i < str2.length; i++) {
+                if (!areCharactersEqualIgnoreCase(str1[start + i], str2[i])) {
+                    return false;
+                }
+            }
+            return true;
+        }
+        
         for (let i = 0; i < plats.length; i++) {
             const plat = plats[i];
             let ingredientMatch = false;
         
-            // Boucle pour vérifier si un des ingrédients correspond à la recherche
+            // Boucle pour vérifier si un des ingrédients contient la recherche sans tenir compte de la casse
             for (let j = 0; j < plat.ingredients.length; j++) {
-                const ingredient = plat.ingredients[j].ingredient.toLowerCase();
-                if (ingredient.includes(searchQuery)) {
-                    ingredientMatch = true;
-                    break; // Arrêter la boucle dès qu'une correspondance est trouvée
+                const ingredient = plat.ingredients[j].ingredient;
+        
+                for (let k = 0; k <= ingredient.length - searchQuery.length; k++) {
+                    if (areStringsEqualIgnoreCase(ingredient, searchQuery, k)) {
+                        ingredientMatch = true;
+                        break;
+                    }
+                }
+                if (ingredientMatch) break;
+            }
+        
+            // Vérification pour le nom et la description sans tenir compte de la casse
+            let nameMatch = false;
+            let descriptionMatch = false;
+            const name = plat.name;
+            const description = plat.description;
+        
+            for (let k = 0; k <= name.length - searchQuery.length; k++) {
+                if (areStringsEqualIgnoreCase(name, searchQuery, k)) {
+                    nameMatch = true;
+                    break;
                 }
             }
         
-            // Vérification des autres conditions de recherche pour le nom et la description
-            if (
-                plat.name.toLowerCase().includes(searchQuery) ||
-                plat.description.toLowerCase().includes(searchQuery) ||
-                ingredientMatch
-            ) {
-                filteredRecipe[filteredRecipe.length] = plat; // Ajouter le plat à filteredRecipe
+            for (let k = 0; k <= description.length - searchQuery.length; k++) {
+                if (areStringsEqualIgnoreCase(description, searchQuery, k)) {
+                    descriptionMatch = true;
+                    break;
+                }
+            }
+        
+            // Ajouter le plat si l'un des critères est respecté
+            if (nameMatch || descriptionMatch || ingredientMatch) {
+                filteredRecipe[filteredRecipe.length] = plat;
             }
         }
+        
     
 
         // Effacer les plats affichés actuellement
