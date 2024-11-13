@@ -86,20 +86,27 @@ document.querySelector('.search-bar input').addEventListener('input', (e) => {
         // Filtrer les recettes correspondant à la recherche
         for (let i = 0; i < plats.length; i++) {
             const plat = plats[i];
-
-            // Vérification des conditions de recherche pour le nom, la description et les ingrédients
-            const ingredientMatch = plat.ingredients.some(ingredient =>
-                ingredient.ingredient.toLowerCase().includes(searchQuery)
-            );
-
+            let ingredientMatch = false;
+        
+            // Boucle pour vérifier si un des ingrédients correspond à la recherche
+            for (let j = 0; j < plat.ingredients.length; j++) {
+                const ingredient = plat.ingredients[j].ingredient.toLowerCase();
+                if (ingredient.includes(searchQuery)) {
+                    ingredientMatch = true;
+                    break; // Arrêter la boucle dès qu'une correspondance est trouvée
+                }
+            }
+        
+            // Vérification des autres conditions de recherche pour le nom et la description
             if (
                 plat.name.toLowerCase().includes(searchQuery) ||
                 plat.description.toLowerCase().includes(searchQuery) ||
                 ingredientMatch
             ) {
-                filteredRecipe.push(plat); // Ajouter le plat à filteredRecipe s'il correspond
+                filteredRecipe[filteredRecipe.length] = plat; // Ajouter le plat à filteredRecipe
             }
         }
+    
 
         // Effacer les plats affichés actuellement
         document.querySelector('.plats-section').innerHTML = '';
