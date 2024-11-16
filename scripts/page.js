@@ -24,11 +24,9 @@ function genererPlats(plats) {
         const ingredienTitre = document.createElement("h3")
         ingredienTitre.innerText = `Ingrédients`;
 
-        // Conteneur des ingrédients
         const ingredientsContainer = document.createElement("div");
         ingredientsContainer.className = "ingredients-container";
 
-        // Ajout des ingrédients en colonnes
         for (const ingredient of plat.ingredients) {
 
             const ingredientItem = document.createElement("div");
@@ -42,7 +40,6 @@ function genererPlats(plats) {
             ingredientDetails.className = "details";
             ingredientDetails.innerText = `${ingredient.quantity || ""} ${ingredient.unit || ""}`;
 
-            // Ajout des éléments dans le conteneur d'ingrédient
             ingredientItem.appendChild(ingredientName);
             ingredientItem.appendChild(ingredientDetails);
             ingredientsContainer.appendChild(ingredientItem);
@@ -80,7 +77,7 @@ let filteredRecipe = [];
 
 
 document.querySelector('.search-bar input').addEventListener('input', (e) => {
-    const searchQuery = e.target.value.toLowerCase();  // Convertir l'entrée en minuscule pour une recherche insensible à la casse.
+    const searchQuery = e.target.value.toLowerCase(); 
 
     if (searchQuery.length >= 3) {
         // Filtrer les recettes correspondant à la recherche
@@ -94,11 +91,9 @@ document.querySelector('.search-bar input').addEventListener('input', (e) => {
             );
         });
 
-        // Effacer les plats affichés actuellement
         document.querySelector('.plats-section').innerHTML = '';
 
         if (filteredRecipe.length >= 1) {
-            // Générer les plats filtrés
             genererPlats(filteredRecipe);
 
             console.log(filteredRecipe);
@@ -148,18 +143,11 @@ document.querySelector('.search-bar input').addEventListener('input', (e) => {
             noResultsMessage.style.display = 'block';
             document.querySelector('.number').innerHTML = '';
             number(filteredRecipe);
-            
-
-
         }
-
-
-
-
     } else if (searchQuery.length >= 1 && searchQuery.length < 3) {
 
-        document.querySelector('.plats-section').innerHTML = ''; // Ex: effacer les plats
-        document.querySelector('.selected-items').innerHTML = ''; // Ex: effacer les plats
+        document.querySelector('.plats-section').innerHTML = ''; 
+        document.querySelector('.selected-items').innerHTML = ''; 
 
         document.querySelector('.number').innerHTML = '';
         number(plats);
@@ -176,22 +164,17 @@ document.querySelector('.search-bar input').addEventListener('input', (e) => {
         selectedAPPS = []
         selectedUstensils = []
 
-        // Si la barre de recherche est vide, afficher la liste complète des plats
         document.querySelector('.plats-section').innerHTML = '';
         genererPlats(plats);
         console.log(plats.length)
 
-
         document.querySelector('.number').innerHTML = '';
         number(plats);
 
-
-        // Effacer tous les éléments avec la classe `.liste1`
         document.querySelectorAll('.liste1').forEach(element => {
             element.innerHTML = '';
         });
 
-        // Faire la même chose pour `.liste` et `.liste2`
         document.querySelectorAll('.liste').forEach(element => {
             element.innerHTML = '';
         });
@@ -208,5 +191,3 @@ document.querySelector('.search-bar input').addEventListener('input', (e) => {
 
     }
 });
-
-

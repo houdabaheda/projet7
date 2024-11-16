@@ -17,21 +17,20 @@ const arrowUS = document.getElementById('arrowUS');
 const selectedItems = document.getElementById('selectedItems');
 let isDropdownOpen = false;
 
-// Fonction pour afficher/masquer la liste des ingrédients
+
 function toggleDropdown(ingredientList, arrow) {
     if (isDropdownOpen) {
         ingredientList.style.display = 'none';
-        arrow.classList.remove('fa-chevron-up'); // Enlever la flèche vers le haut
-        arrow.classList.add('fa-chevron-down');  // Ajouter la flèche vers le bas
+        arrow.classList.remove('fa-chevron-up');
+        arrow.classList.add('fa-chevron-down');  
         isDropdownOpen = false;
     } else {
         ingredientList.style.display = 'block';
-        arrow.classList.remove('fa-chevron-down'); // Enlever la flèche vers le bas
-        arrow.classList.add('fa-chevron-up');      // Ajouter la flèche vers le haut
+        arrow.classList.remove('fa-chevron-down'); 
+        arrow.classList.add('fa-chevron-up');      
         isDropdownOpen = true;
     }
 }
-// Gérer le clic sur la boîte de sélection
 
 selectBox.addEventListener('click', () => toggleDropdown(ingredientList, arrow));
 selectBoxAPP.addEventListener('click', () => toggleDropdown(ingredientListAPP, arrowAPP));
@@ -160,7 +159,7 @@ function selectIngredient(ingredient, recipes) {
             if (selectedINGRS.length > 0 || selectedAPPS.length > 0 || selectedUstensils.length > 0) {
 
                 if (filteredRecipe.length === 0) {
-                    filteredRecipes = applyFilters(plats); // Initialisation de filteredRecipes
+                    filteredRecipes = applyFilters(plats); 
                 } else {
                     filteredRecipes = applyFilters(filteredRecipe);
                 }
@@ -262,7 +261,7 @@ function selectIngredient(ingredient, recipes) {
 
         });
     }
-    toggleDropdown(ingredientList, arrow)// Fermer la liste après sélection
+    toggleDropdown(ingredientList, arrow)
 }
 
 
@@ -657,19 +656,6 @@ function selectIngredientUS(Ustensil, recipes) {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-// Fonction pour filtrer les ingrédients selon la recherche
 function filterIngredients() {
     const searchTerm = document.getElementById('searchInput').value.toLowerCase();
     const items = ingredientList.querySelectorAll('.item');
@@ -705,7 +691,3 @@ function filterIngredientsUS() {
         }
     });
 }
-
-
-
-
