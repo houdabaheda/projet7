@@ -91,6 +91,7 @@ function populateIngredientList(allIngredients, recipes) {
         const item = document.createElement('div');
         item.classList.add('item');
         item.textContent = ingredient;
+
         item.addEventListener('click', (event) => {
             selectIngredient(ingredient, recipes);
             const selectedINGR = event.target.textContent;
@@ -193,6 +194,7 @@ function selectIngredient(ingredient, recipes) {
 
             } else {
                 if (filteredRecipe.length > 0) {
+
                     document.querySelector('.plats-section').innerHTML = '';
                     genererPlats(filteredRecipe);
 
@@ -293,7 +295,6 @@ function populateIngredientListAPP(allAppliances, recipes) {
             if (!selectedAPPS.includes(selectedAPP)) {
                 selectedAPPS.push(selectedAPP);
             }
-            console.log("Ustensiles sélectionnés:", selectedAPPS);
             const filteredRecipes = applyFilters(recipes);
 
 

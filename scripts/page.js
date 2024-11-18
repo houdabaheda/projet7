@@ -1,4 +1,3 @@
-console.log(recipes)
 const plats = recipes
 
 
@@ -64,22 +63,25 @@ function genererPlats(plats) {
 }
 
 populateIngredientList(allIngredients, plats);
-console.log(allIngredients)
 populateIngredientListAPP(allAppliances, plats);
 populateIngredientListUS(allUstensils, plats);
 number(plats)
 genererPlats(plats)
 
-let filteredRecipe = []; 
-
+let filteredRecipe = [];
 
 
 
 
 document.querySelector('.search-bar input').addEventListener('input', (e) => {
-    const searchQuery = e.target.value.toLowerCase(); 
+
+    const searchQuery = e.target.value.toLowerCase();
+
+    
+
 
     if (searchQuery.length >= 3) {
+
         // Filtrer les recettes correspondant à la recherche
         filteredRecipe = plats.filter(plat => {
             return (
@@ -96,7 +98,6 @@ document.querySelector('.search-bar input').addEventListener('input', (e) => {
         if (filteredRecipe.length >= 1) {
             genererPlats(filteredRecipe);
 
-            console.log(filteredRecipe);
 
             document.querySelector('.number').innerHTML = '';
             number(filteredRecipe);
@@ -106,11 +107,8 @@ document.querySelector('.search-bar input').addEventListener('input', (e) => {
 
 
             const allIngredientsTag = extractUniqueIngredients(filteredRecipe);
-            console.log(allIngredientsTag)
             const allAppliancesTag = extractUniqueAppliances(filteredRecipe);
-            console.log(allAppliancesTag)
             const allUstensilsTag = extractUniqueUstensils(filteredRecipe);
-            console.log(allUstensilsTag)
 
             // Effacer tous les éléments avec la classe `.liste1`
             document.querySelectorAll('.liste1').forEach(element => {
@@ -138,7 +136,7 @@ document.querySelector('.search-bar input').addEventListener('input', (e) => {
 
         } else {
             const noResultsMessage = document.querySelector('.no-results-message');
-           
+
             noResultsMessage.textContent = `Aucune recette ne contient « ${searchQuery} ». Vous pouvez chercher « tarte aux pommes », « poisson », etc.`;
             noResultsMessage.style.display = 'block';
             document.querySelector('.number').innerHTML = '';
@@ -146,8 +144,10 @@ document.querySelector('.search-bar input').addEventListener('input', (e) => {
         }
     } else if (searchQuery.length >= 1 && searchQuery.length < 3) {
 
-        document.querySelector('.plats-section').innerHTML = ''; 
-        document.querySelector('.selected-items').innerHTML = ''; 
+        document.querySelector('.plats-section').innerHTML = '';
+
+
+
 
         document.querySelector('.number').innerHTML = '';
         number(plats);
@@ -159,35 +159,42 @@ document.querySelector('.search-bar input').addEventListener('input', (e) => {
 
 
     } else if (searchQuery.length === 0) {
-        filteredRecipe=[]
-        selectedINGRS = []
-        selectedAPPS = []
-        selectedUstensils = []
+
+        filteredRecipe = []
+
+        filteredRecipes = applyFilters(plats);
+
+
 
         document.querySelector('.plats-section').innerHTML = '';
-        genererPlats(plats);
-        console.log(plats.length)
+        genererPlats(filteredRecipes);
 
         document.querySelector('.number').innerHTML = '';
-        number(plats);
+        number(filteredRecipes);
 
-        document.querySelectorAll('.liste1').forEach(element => {
-            element.innerHTML = '';
-        });
 
         document.querySelectorAll('.liste').forEach(element => {
             element.innerHTML = '';
         });
+        TagINGR = extractUniqueIngredients(filteredRecipes).filter(ingredient => !selectedINGRS.includes(ingredient));
+        populateIngredientList(TagINGR, recipes);
+
+
+        document.querySelectorAll('.liste1').forEach(element => {
+            element.innerHTML = '';
+        });
+        TagApp = extractUniqueAppliances(filteredRecipes).filter(appliance => !selectedAPPS.includes(appliance));
+        populateIngredientListAPP(TagApp, filteredRecipes);
+
 
         document.querySelectorAll('.liste2').forEach(element => {
             element.innerHTML = '';
         });
-
-
-
-        populateIngredientList(allIngredients, plats);
-        populateIngredientListAPP(allAppliances, plats);
-        populateIngredientListUS(allUstensils, plats);
+        const Tag = extractUniqueUstensils(filteredRecipes).filter(ustensil => !selectedUstensils.includes(ustensil));
+        populateIngredientListUS(Tag, filteredRecipes);
 
     }
 });
+
+
+

@@ -29,7 +29,6 @@ function extractUniqueAppliances(recipes) {
     });
 
     return allAppliances;
-    console.log(allAppliances);
 }
 const allAppliances = extractUniqueAppliances(recipes);
 
