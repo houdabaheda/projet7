@@ -294,7 +294,6 @@ function populateIngredientListAPP(allAppliances, recipes) {
             if (!selectedAPPS.includes(selectedAPP)) {
                 selectedAPPS.push(selectedAPP);
             }
-            console.log("Ustensiles sélectionnés:", selectedAPPS);
             const filteredRecipes = applyFilters(recipes);
 
 

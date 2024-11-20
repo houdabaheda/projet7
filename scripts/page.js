@@ -67,7 +67,6 @@ function genererPlats(plats) {
 }
 
 populateIngredientList(allIngredients, plats);
-console.log(allIngredients)
 populateIngredientListAPP(allAppliances, plats);
 populateIngredientListUS(allUstensils, plats);
 number(plats)
@@ -78,10 +77,26 @@ genererPlats(plats)
 
 
 let filteredRecipe = [];
+let previousLength = 0;
+
 
 document.querySelector('.search-bar input').addEventListener('input', (e) => {
-    const searchQuery = e.target.value.toLowerCase(); 
-    filteredRecipe = [] 
+    const searchQuery = e.target.value.toLowerCase();
+    filteredRecipe = []
+
+    const currentLength = searchQuery.length;
+
+    if (currentLength > previousLength && previousLength >= 0) {
+        if (currentLength === 1 || currentLength === 2) {
+            document.querySelector('.selected-items').innerHTML = '';
+            selectedINGRS = []
+            selectedAPPS = []
+            selectedUstensils = []
+        }
+    }
+
+    previousLength = currentLength;
+
     if (searchQuery.length >= 3) {
         // Filtrer les recettes correspondant à la recherche
         function areCharactersEqualIgnoreCase(char1, char2) {
@@ -94,7 +109,7 @@ document.querySelector('.search-bar input').addEventListener('input', (e) => {
             }
             return char1 === char2;
         }
-        
+
         function areStringsEqualIgnoreCase(str1, str2, start) {
             for (let i = 0; i < str2.length; i++) {
                 if (!areCharactersEqualIgnoreCase(str1[start + i], str2[i])) {
@@ -103,15 +118,15 @@ document.querySelector('.search-bar input').addEventListener('input', (e) => {
             }
             return true;
         }
-        
+
         for (let i = 0; i < plats.length; i++) {
             const plat = plats[i];
             let ingredientMatch = false;
-        
+
             // Boucle pour vérifier si un des ingrédients contient la recherche sans tenir compte de la casse
             for (let j = 0; j < plat.ingredients.length; j++) {
                 const ingredient = plat.ingredients[j].ingredient;
-        
+
                 for (let k = 0; k <= ingredient.length - searchQuery.length; k++) {
                     if (areStringsEqualIgnoreCase(ingredient, searchQuery, k)) {
                         ingredientMatch = true;
@@ -120,34 +135,34 @@ document.querySelector('.search-bar input').addEventListener('input', (e) => {
                 }
                 if (ingredientMatch) break;
             }
-        
+
             // Vérification pour le nom et la description sans tenir compte de la casse
             let nameMatch = false;
             let descriptionMatch = false;
             const name = plat.name;
             const description = plat.description;
-        
+
             for (let k = 0; k <= name.length - searchQuery.length; k++) {
                 if (areStringsEqualIgnoreCase(name, searchQuery, k)) {
                     nameMatch = true;
                     break;
                 }
             }
-        
+
             for (let k = 0; k <= description.length - searchQuery.length; k++) {
                 if (areStringsEqualIgnoreCase(description, searchQuery, k)) {
                     descriptionMatch = true;
                     break;
                 }
             }
-        
+
             // Ajouter le plat si l'un des critères est respecté
             if (nameMatch || descriptionMatch || ingredientMatch) {
                 filteredRecipe[filteredRecipe.length] = plat;
             }
         }
-        
-    
+
+
 
         // Effacer les plats affichés actuellement
         document.querySelector('.plats-section').innerHTML = '';
@@ -156,7 +171,6 @@ document.querySelector('.search-bar input').addEventListener('input', (e) => {
             // Générer les plats filtrés
             genererPlats(filteredRecipe);
 
-            console.log(filteredRecipe);
 
             document.querySelector('.number').innerHTML = '';
             number(filteredRecipe);
@@ -166,11 +180,8 @@ document.querySelector('.search-bar input').addEventListener('input', (e) => {
 
 
             const allIngredientsTag = extractUniqueIngredients(filteredRecipe);
-            console.log(allIngredientsTag)
             const allAppliancesTag = extractUniqueAppliances(filteredRecipe);
-            console.log(allAppliancesTag)
             const allUstensilsTag = extractUniqueUstensils(filteredRecipe);
-            console.log(allUstensilsTag)
 
             let elementsListe1 = document.querySelectorAll('.liste1');
             for (let element of elementsListe1) {
@@ -215,7 +226,6 @@ document.querySelector('.search-bar input').addEventListener('input', (e) => {
     } else if (searchQuery.length >= 1 && searchQuery.length < 3) {
 
         document.querySelector('.plats-section').innerHTML = ''; // Ex: effacer les plats
-        document.querySelector('.selected-items').innerHTML = ''; // Ex: effacer les plats
 
         document.querySelector('.number').innerHTML = '';
         number(plats);
@@ -227,39 +237,39 @@ document.querySelector('.search-bar input').addEventListener('input', (e) => {
 
 
     } else if (searchQuery.length === 0) {
+
         filteredRecipe = []
-        selectedINGRS = []
-        selectedAPPS = []
-        selectedUstensils = []
-        // Si la barre de recherche est vide, afficher la liste complète des plats
+
+        filteredRecipes = applyFilters(plats);
+
+
+
         document.querySelector('.plats-section').innerHTML = '';
-        genererPlats(plats);
-        console.log(plats.length)
+        genererPlats(filteredRecipes);
 
         document.querySelector('.number').innerHTML = '';
-        number(plats);
+        number(filteredRecipes);
 
 
-        let elementsListe1 = document.querySelectorAll('.liste1');
-        for (let element of elementsListe1) {
+        document.querySelectorAll('.liste').forEach(element => {
             element.innerHTML = '';
-        }
+        });
+        TagINGR = extractUniqueIngredients(filteredRecipes).filter(ingredient => !selectedINGRS.includes(ingredient));
+        populateIngredientList(TagINGR, recipes);
 
-        let elementsListe = document.querySelectorAll('.liste');
-        for (let element of elementsListe) {
+
+        document.querySelectorAll('.liste1').forEach(element => {
             element.innerHTML = '';
-        }
+        });
+        TagApp = extractUniqueAppliances(filteredRecipes).filter(appliance => !selectedAPPS.includes(appliance));
+        populateIngredientListAPP(TagApp, filteredRecipes);
 
-        let elementsListe2 = document.querySelectorAll('.liste2');
-        for (let element of elementsListe2) {
+
+        document.querySelectorAll('.liste2').forEach(element => {
             element.innerHTML = '';
-        }
-
-
-
-        populateIngredientList(allIngredients, plats);
-        populateIngredientListAPP(allAppliances, plats);
-        populateIngredientListUS(allUstensils, plats);
+        });
+        const Tag = extractUniqueUstensils(filteredRecipes).filter(ustensil => !selectedUstensils.includes(ustensil));
+        populateIngredientListUS(Tag, filteredRecipes);
 
     }
 });
