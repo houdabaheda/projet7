@@ -93,16 +93,6 @@ document.querySelector('.search-bar input').addEventListener('input', (e) => {
 
 
 
-
-
-
-
-
-
-
-
-
-
     if (searchQuery.length >= 3) {
 
         // Filtrer les recettes correspondant à la recherche
@@ -184,12 +174,10 @@ document.querySelector('.search-bar input').addEventListener('input', (e) => {
 
 
     } else if (searchQuery.length === 0) {
-        console.log(selectedINGRS)
 
         filteredRecipe = []
 
         filteredRecipes = applyFilters(plats);
-        console.log(filteredRecipes)
 
 
 
