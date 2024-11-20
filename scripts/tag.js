@@ -92,6 +92,7 @@ function populateIngredientList(allIngredients, recipes) {
         item.classList.add('item');
         item.textContent = ingredient;
 
+
         item.addEventListener('click', (event) => {
             selectIngredient(ingredient, recipes);
             const selectedINGR = event.target.textContent;

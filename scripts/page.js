@@ -72,12 +72,35 @@ let filteredRecipe = [];
 
 
 
+let previousLength = 0; 
 
 document.querySelector('.search-bar input').addEventListener('input', (e) => {
 
     const searchQuery = e.target.value.toLowerCase();
 
-    
+    const currentLength = searchQuery.length;
+
+    if (currentLength > previousLength && previousLength >= 0) {
+        if (currentLength === 1 || currentLength === 2) {
+            document.querySelector('.selected-items').innerHTML = '';
+            selectedINGRS = []
+            selectedAPPS = []
+            selectedUstensils = []
+        }
+    }
+
+    previousLength = currentLength;
+
+
+
+
+
+
+
+
+
+
+
 
 
     if (searchQuery.length >= 3) {
@@ -96,6 +119,7 @@ document.querySelector('.search-bar input').addEventListener('input', (e) => {
         document.querySelector('.plats-section').innerHTML = '';
 
         if (filteredRecipe.length >= 1) {
+
             genererPlats(filteredRecipe);
 
 
@@ -149,6 +173,7 @@ document.querySelector('.search-bar input').addEventListener('input', (e) => {
 
 
 
+
         document.querySelector('.number').innerHTML = '';
         number(plats);
 
@@ -159,10 +184,12 @@ document.querySelector('.search-bar input').addEventListener('input', (e) => {
 
 
     } else if (searchQuery.length === 0) {
+        console.log(selectedINGRS)
 
         filteredRecipe = []
 
         filteredRecipes = applyFilters(plats);
+        console.log(filteredRecipes)
 
 
 
@@ -194,6 +221,8 @@ document.querySelector('.search-bar input').addEventListener('input', (e) => {
         populateIngredientListUS(Tag, filteredRecipes);
 
     }
+
+
 });
 
 
