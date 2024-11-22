@@ -84,7 +84,6 @@ document.querySelector('.search-bar input').addEventListener('input', (e) => {
 
 
     if (searchQuery.length >= 3) {
-        console.log(selectedINGRS)
         const hasSelectedItems = selectedINGRS.length > 0 || selectedAPPS.length > 0 || selectedUstensils.length > 0;
 
         
@@ -102,7 +101,6 @@ document.querySelector('.search-bar input').addEventListener('input', (e) => {
 
         if (hasSelectedItems) {
             rh =applyFilters(filteredRecipe)
-            console.log(rh)
 
         }
 
