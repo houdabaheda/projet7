@@ -90,10 +90,7 @@ document.querySelector('.search-bar input').addEventListener('input', (e) => {
     if (searchQuery.length >= 3) {
 
         const hasSelectedItems = selectedINGRS.length > 0 || selectedAPPS.length > 0 || selectedUstensils.length > 0;
-        if (hasSelectedItems) {
-            rh = applyFilters(filteredRecipe)
-
-        }
+        
 
 
         // Filtrer les recettes correspondant à la recherche
@@ -158,6 +155,11 @@ document.querySelector('.search-bar input').addEventListener('input', (e) => {
             if (nameMatch || descriptionMatch || ingredientMatch) {
                 filteredRecipe[filteredRecipe.length] = plat;
             }
+        }
+
+        if (hasSelectedItems) {
+            rh = applyFilters(filteredRecipe)
+
         }
 
 
