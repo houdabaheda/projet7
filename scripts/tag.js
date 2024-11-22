@@ -165,12 +165,10 @@ function selectIngredient(ingredient, recipes) {
                 if (filteredRecipe.length === 0) {
                     filteredRecipes = applyFilters(plats); 
                 }
-                if (filteredRecipe.length >= 1  && rh.length === 0){
+                if (filteredRecipe.length >= 1  ){
                     filteredRecipes = applyFilters(filteredRecipe);
                 }
-                if (rh.length >= 1 ){
-                    filteredRecipes = applyFilters(rh);
-                }
+               
                 
                 document.querySelector('.plats-section').innerHTML = '';
                 genererPlats(filteredRecipes);
@@ -367,12 +365,10 @@ function selectIngredientAPP(Appliance, recipes) {
                 if (filteredRecipe.length === 0) {
                     filteredRecipes = applyFilters(plats); 
                 }
-                if (filteredRecipe.length >= 1  && rh.length === 0){
+                if (filteredRecipe.length >= 1){
                     filteredRecipes = applyFilters(filteredRecipe);
                 }
-                if (rh.length >= 1 ){
-                    filteredRecipes = applyFilters(rh);
-                }
+                
 
 
 
@@ -561,12 +557,10 @@ function selectIngredientUS(Ustensil, recipes) {
                 if (filteredRecipe.length === 0) {
                     filteredRecipes = applyFilters(plats); 
                 }
-                if (filteredRecipe.length >= 1  && rh.length === 0){
+                if (filteredRecipe.length >= 1 ){
                     filteredRecipes = applyFilters(filteredRecipe);
                 }
-                if (rh.length >= 1 ){
-                    filteredRecipes = applyFilters(rh);
-                }
+                
 
                 document.querySelector('.plats-section').innerHTML = '';
                 genererPlats(filteredRecipes);

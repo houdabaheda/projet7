@@ -110,6 +110,7 @@ document.querySelector('.search-bar input').addEventListener('input', (e) => {
         document.querySelector('.plats-section').innerHTML = '';
 
         if (filteredRecipe.length >= 1 && !hasSelectedItems) {
+            rh=[]
 
             genererPlats(filteredRecipe);
 
