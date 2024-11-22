@@ -1,3 +1,5 @@
+/* global genererPlats number extractUniqueIngredients extractUniqueAppliances extractUniqueUstensils filteredRecipe plats rh */
+
 const selectBox = document.getElementById('selectBox');
 const ingredientList = document.getElementById('ingredientList');
 const arrow = document.getElementById('arrow');

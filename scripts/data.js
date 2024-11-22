@@ -1,3 +1,6 @@
+/* global recipes  */
+
+
 function extractUniqueIngredients(recipes) {
     const allIngredients = [];
 
@@ -13,7 +16,9 @@ function extractUniqueIngredients(recipes) {
     return allIngredients;
 
 }
+/* eslint-disable no-unused-vars */
 const allIngredients = extractUniqueIngredients(recipes);
+/* eslint-enable no-unused-vars */
 
 
 function extractUniqueAppliances(recipes) {
@@ -30,7 +35,10 @@ function extractUniqueAppliances(recipes) {
 
     return allAppliances;
 }
+/* eslint-disable no-unused-vars */
 const allAppliances = extractUniqueAppliances(recipes);
+/* eslint-enable no-unused-vars */
+
 
 function extractUniqueUstensils(recipes) {
     const allUstensils = [];
@@ -46,12 +54,15 @@ function extractUniqueUstensils(recipes) {
     return allUstensils;
 
 }
+/* eslint-disable no-unused-vars */
 const allUstensils=extractUniqueUstensils(recipes);
+/* eslint-enable no-unused-vars */
 
 
-
+/* eslint-disable-next-line no-unused-vars */
 function number (recipes){
     const number =recipes.length;
+
 
     const num=document.querySelector('.number');
     num.innerText = `${number} RECETTES`;
