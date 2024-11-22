@@ -77,27 +77,25 @@ genererPlats(plats)
 
 
 let filteredRecipe = [];
-let previousLength = 0;
+let rh = [];
+
 
 
 document.querySelector('.search-bar input').addEventListener('input', (e) => {
     const searchQuery = e.target.value.toLowerCase();
     filteredRecipe = []
 
-    const currentLength = searchQuery.length;
 
-    if (currentLength > previousLength && previousLength >= 0) {
-        if (currentLength === 1 || currentLength === 2) {
-            document.querySelector('.selected-items').innerHTML = '';
-            selectedINGRS = []
-            selectedAPPS = []
-            selectedUstensils = []
-        }
-    }
-
-    previousLength = currentLength;
 
     if (searchQuery.length >= 3) {
+
+        const hasSelectedItems = selectedINGRS.length > 0 || selectedAPPS.length > 0 || selectedUstensils.length > 0;
+        if (hasSelectedItems) {
+            rh = applyFilters(filteredRecipe)
+
+        }
+
+
         // Filtrer les recettes correspondant à la recherche
         function areCharactersEqualIgnoreCase(char1, char2) {
             const diff = 'a'.charCodeAt(0) - 'A'.charCodeAt(0);
@@ -167,8 +165,8 @@ document.querySelector('.search-bar input').addEventListener('input', (e) => {
         // Effacer les plats affichés actuellement
         document.querySelector('.plats-section').innerHTML = '';
 
-        if (filteredRecipe.length >= 1) {
-            // Générer les plats filtrés
+        if (filteredRecipe.length >= 1 && !hasSelectedItems) {
+
             genererPlats(filteredRecipe);
 
 
@@ -183,20 +181,19 @@ document.querySelector('.search-bar input').addEventListener('input', (e) => {
             const allAppliancesTag = extractUniqueAppliances(filteredRecipe);
             const allUstensilsTag = extractUniqueUstensils(filteredRecipe);
 
-            let elementsListe1 = document.querySelectorAll('.liste1');
-            for (let element of elementsListe1) {
+            // Effacer tous les éléments avec la classe `.liste1`
+            document.querySelectorAll('.liste1').forEach(element => {
                 element.innerHTML = '';
-            }
+            });
 
-            let elementsListe = document.querySelectorAll('.liste');
-            for (let element of elementsListe) {
+            // Faire la même chose pour `.liste` et `.liste2`
+            document.querySelectorAll('.liste').forEach(element => {
                 element.innerHTML = '';
-            }
+            });
 
-            let elementsListe2 = document.querySelectorAll('.liste2');
-            for (let element of elementsListe2) {
+            document.querySelectorAll('.liste2').forEach(element => {
                 element.innerHTML = '';
-            }
+            });
 
 
 
@@ -208,24 +205,123 @@ document.querySelector('.search-bar input').addEventListener('input', (e) => {
             document.querySelector('.no-results-message').innerHTML = '';
 
 
-        } else {
+        }
+
+        if (filteredRecipe.length >= 1 && hasSelectedItems && rh.length === 0) {
+            const noResultsMessage = document.querySelector('.no-results-message');
+
+            noResultsMessage.textContent = `Aucune recette ne contient « ${searchQuery} ». Vous pouvez chercher « tarte aux pommes », « poisson », etc.`;
+            noResultsMessage.style.display = 'block';
+            document.querySelector('.number').innerHTML = '';
+            number(rh);
+            const allIngredientsTag = extractUniqueIngredients(rh);
+            const allAppliancesTag = extractUniqueAppliances(rh);
+            const allUstensilsTag = extractUniqueUstensils(rh);
+
+            // Effacer tous les éléments avec la classe `.liste1`
+            document.querySelectorAll('.liste1').forEach(element => {
+                element.innerHTML = '';
+            });
+
+            // Faire la même chose pour `.liste` et `.liste2`
+            document.querySelectorAll('.liste').forEach(element => {
+                element.innerHTML = '';
+            });
+
+            document.querySelectorAll('.liste2').forEach(element => {
+                element.innerHTML = '';
+            });
+
+
+
+
+            populateIngredientList(allIngredientsTag, rh);
+            populateIngredientListAPP(allAppliancesTag, rh);
+            populateIngredientListUS(allUstensilsTag, rh);
+
+
+        }
+        if (filteredRecipe.length === 0) {
             const noResultsMessage = document.querySelector('.no-results-message');
 
             noResultsMessage.textContent = `Aucune recette ne contient « ${searchQuery} ». Vous pouvez chercher « tarte aux pommes », « poisson », etc.`;
             noResultsMessage.style.display = 'block';
             document.querySelector('.number').innerHTML = '';
             number(filteredRecipe);
+            const allIngredientsTag = extractUniqueIngredients(filteredRecipe);
+            const allAppliancesTag = extractUniqueAppliances(filteredRecipe);
+            const allUstensilsTag = extractUniqueUstensils(filteredRecipe);
 
+            // Effacer tous les éléments avec la classe `.liste1`
+            document.querySelectorAll('.liste1').forEach(element => {
+                element.innerHTML = '';
+            });
+
+            // Faire la même chose pour `.liste` et `.liste2`
+            document.querySelectorAll('.liste').forEach(element => {
+                element.innerHTML = '';
+            });
+
+            document.querySelectorAll('.liste2').forEach(element => {
+                element.innerHTML = '';
+            });
+
+
+
+
+            populateIngredientList(allIngredientsTag, filteredRecipe);
+            populateIngredientListAPP(allAppliancesTag, filteredRecipe);
+            populateIngredientListUS(allUstensilsTag, filteredRecipe);
+        }
+        if (rh.length >= 1) {
+
+            genererPlats(rh);
+
+
+            document.querySelector('.number').innerHTML = '';
+            number(rh);
+
+
+
+
+
+            const allIngredientsTag = extractUniqueIngredients(rh);
+            const allAppliancesTag = extractUniqueAppliances(rh);
+            const allUstensilsTag = extractUniqueUstensils(rh);
+
+            // Effacer tous les éléments avec la classe `.liste1`
+            document.querySelectorAll('.liste1').forEach(element => {
+                element.innerHTML = '';
+            });
+
+            // Faire la même chose pour `.liste` et `.liste2`
+            document.querySelectorAll('.liste').forEach(element => {
+                element.innerHTML = '';
+            });
+
+            document.querySelectorAll('.liste2').forEach(element => {
+                element.innerHTML = '';
+            });
+
+
+
+
+            populateIngredientList(allIngredientsTag, rh);
+            populateIngredientListAPP(allAppliancesTag, rh);
+            populateIngredientListUS(allUstensilsTag, rh);
+
+            document.querySelector('.no-results-message').innerHTML = '';
 
 
         }
 
-
-
-
     } else if (searchQuery.length >= 1 && searchQuery.length < 3) {
 
-        document.querySelector('.plats-section').innerHTML = ''; // Ex: effacer les plats
+        document.querySelector('.plats-section').innerHTML = '';
+
+
+
+
 
         document.querySelector('.number').innerHTML = '';
         number(plats);
@@ -273,5 +369,3 @@ document.querySelector('.search-bar input').addEventListener('input', (e) => {
 
     }
 });
-
-

@@ -160,9 +160,13 @@ function selectIngredient(ingredient, recipes) {
             if (selectedINGRS.length > 0 || selectedAPPS.length > 0 || selectedUstensils.length > 0) {
 
                 if (filteredRecipe.length === 0) {
-                    filteredRecipes = applyFilters(plats); // Initialisation de filteredRecipes
-                } else {
+                    filteredRecipes = applyFilters(plats); 
+                }
+                if (filteredRecipe.length >= 1  && rh.length === 0){
                     filteredRecipes = applyFilters(filteredRecipe);
+                }
+                if (rh.length >= 1 ){
+                    filteredRecipes = applyFilters(rh);
                 }
                 
                 document.querySelector('.plats-section').innerHTML = '';
@@ -358,8 +362,12 @@ function selectIngredientAPP(Appliance, recipes) {
 
                 if (filteredRecipe.length === 0) {
                     filteredRecipes = applyFilters(plats); 
-                } else {
+                }
+                if (filteredRecipe.length >= 1  && rh.length === 0){
                     filteredRecipes = applyFilters(filteredRecipe);
+                }
+                if (rh.length >= 1 ){
+                    filteredRecipes = applyFilters(rh);
                 }
 
 
@@ -547,9 +555,13 @@ function selectIngredientUS(Ustensil, recipes) {
 
             if (selectedINGRS.length > 0 || selectedAPPS.length > 0 || selectedUstensils.length > 0) {
                 if (filteredRecipe.length === 0) {
-                    filteredRecipes = applyFilters(plats); // Initialisation de filteredRecipes
-                } else {
+                    filteredRecipes = applyFilters(plats); 
+                }
+                if (filteredRecipe.length >= 1  && rh.length === 0){
                     filteredRecipes = applyFilters(filteredRecipe);
+                }
+                if (rh.length >= 1 ){
+                    filteredRecipes = applyFilters(rh);
                 }
 
                 document.querySelector('.plats-section').innerHTML = '';
